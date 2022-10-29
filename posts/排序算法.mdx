@@ -1,0 +1,101 @@
+---
+title: 算法
+description: 排序
+date: Oct 29 2022
+---
+
+# 排序算法
+
+```javascript
+// 选择排序
+// 数组每个位置依次和后面所有位置比较，找出最小值索引，如当前索引不为最小索引则与最小索引交换位置
+function selectionSort(array) {
+  for (let index = 0; index < array.length; index++) {
+    let min = index;
+
+    for (let pairIndex = index + 1; pairIndex < array.length; pairIndex++) {
+      if (array[pairIndex] < array[min]) {
+        min = pairIndex;
+      }
+    }
+
+    if (min !== index) {
+      swap(array, index, min);
+    }
+  }
+
+  return array;
+}
+
+// 冒泡排序
+// 数组每个位置依次和相邻位置比较大小，若大于比较的值则交换位置
+function bubbleSort(array) {
+  for (let index = 0; index < array.length; index++) {
+    for (let pairIndex = index + 1; pairIndex < array.length; pairIndex++) {
+      if (array[pairIndex] < array[index]) {
+        swap(array, pairIndex, index);
+      }
+    }
+  }
+
+  return array;
+}
+
+// 插入排序
+// 将数组分为两部分，左为已排序部分，右为未排序部分，未排序部分依次和已排序部分的最大值比较，
+function insertionSort(array) {
+  const sortedArray = [];
+
+  while (array.length) {
+    const value = array.shift();
+    console.log('value: ', value);
+    const len = sortedArray.length;
+
+    for (let i = len; i >= 0; i--) {
+      if (sortedArray[i] < value) {
+        sortedArray.splice(i + 1, 0, value);
+        break;
+      }
+    }
+
+    if (len === sortedArray.length) {
+      sortedArray.unshift(value);
+    }
+    console.log(JSON.stringify(sortedArray));
+  }
+
+  return sortedArray;
+}
+
+// function insertionSort(myArray) {
+
+//     var len     = myArray.length,     // 数组的长度
+//         value,                      // 当前比较的值
+//         i,                          // 未排序部分的当前位置
+//         j;                          // 已排序部分的当前位置
+
+//     for (i=0; i < len; i++) {
+
+//         // 储存当前位置的值
+//         value = myArray[i];
+
+//         /*
+//          * 当已排序部分的当前元素大于value，
+//          * 就将当前元素向后移一位，再将前一位与value比较
+//          */
+//         for (j=i-1; j > -1 && myArray[j] > value; j--) {
+//             myArray[j+1] = myArray[j];
+//         }
+
+//         myArray[j+1] = value;
+//     }
+
+//     return myArray;
+// }
+
+function swap(myArray, p1, p2) {
+  var temp = myArray[p1];
+  myArray[p1] = myArray[p2];
+  myArray[p2] = temp;
+}
+```
